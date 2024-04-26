@@ -12,6 +12,15 @@ img{
   margin-top: 1%;
   margin-bottom: 1%;
 }
+.vl {
+    border-left: 6px solid grey;
+    height: 120;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 205;
+    
+  }
 
 .row{
   display: flex;  
