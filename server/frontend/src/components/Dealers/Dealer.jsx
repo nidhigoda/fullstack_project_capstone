@@ -41,7 +41,8 @@ const Dealer = () => {
       method: "GET"
     });
     const retobj = await res.json();
-    
+    console.log("RestObj"+retobj.status);
+    console.log("RestObj"+retobj.reviews);
     if(retobj.status === 200) {
       if(retobj.reviews.length > 0){
         setReviews(retobj.reviews)
