@@ -27,14 +27,17 @@ const PostReview = () => {
     if(name.includes("null")) {
       name = sessionStorage.getItem("username");
     }
-    if(!model || review === "" || date === "" || year === "" || model === "") {
+    console.log("Year"+year)
+    console.log("Review"+review)
+    console.log("Date"+date)
+    if(year === ""||review === "" || date === ""  ) {
       alert("All details are mandatory")
       return;
     }
 
-    let model_split = model.split(" ");
-    let make_chosen = model_split[0];
-    let model_chosen = model_split[1];
+    //let model_split = model.split(" ");
+   // let make_chosen = model_split[0];
+   // let model_chosen = model_split[1];
 
     let jsoninput = JSON.stringify({
       "name": name,
@@ -42,8 +45,7 @@ const PostReview = () => {
       "review": review,
       "purchase": true,
       "purchase_date": date,
-      "car_make": make_chosen,
-      "car_model": model_chosen,
+      
       "car_year": year,
     });
 
@@ -57,6 +59,7 @@ const PostReview = () => {
   });
 
   const json = await res.json();
+  console.log(json);
   if (json.status === 200) {
       window.location.href = window.location.origin+"/dealer/"+id;
   }
@@ -99,15 +102,7 @@ const PostReview = () => {
       <div className='input_field'>
       Purchase Date <input type="date" onChange={(e) => setDate(e.target.value)}/>
       </div>
-      <div className='input_field'>
-      Car Make 
-      <select name="cars" id="cars" onChange={(e) => setModel(e.target.value)}>
-      <option value="" selected disabled hidden>Choose Car Make and Model</option>
-      {carmodels.map(carmodel => (
-          <option value={carmodel.CarMake+" "+carmodel.CarModel}>{carmodel.CarMake} {carmodel.CarModel}</option>
-      ))}
-      </select>        
-      </div >
+      
 
       <div className='input_field'>
       Car Year <input type="int" onChange={(e) => setYear(e.target.value)} max={2023} min={2015}/>
